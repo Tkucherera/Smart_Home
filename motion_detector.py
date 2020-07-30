@@ -19,10 +19,9 @@ while True:
             date = str(datetime.datetime.now())
             temp = str(result.temperature)
             humidity = str(result.humidity)
-            print('the temp is ' + temp)
             with open('temp.csv', 'a', newline = '') as f:
                 write = csv.writer(f, delimiter = ' ')
-                if counter == 1:
                     write.writerow(['date','temp','humidity'])
                 write.writerow([date, temp, humidity])
             time.sleep(10)
+            if counter == 1:
