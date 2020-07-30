@@ -9,17 +9,22 @@ GPIO.setmode(GPIO.BCM)
 
 # read data using pin 14
 instance = dht11.DHT11(pin=14)
-
+counter = 1
 try:
 	while True:
-	    result = instance.read()
+		result = instance.read()
 	    if result.is_valid():
-	        print("Last valid input: " + str(datetime.datetime.now()))
-
-	        print("Temperature: %-3.1f C" % result.temperature)
-	        print("Humidity: %-3.1f %%" % result.humidity)
+	    	date =str(datetime.datetime.now())
+			temp =str(result.temperature)
+			humidity=str(result.humidity)
+			with open('data.csv', 'a', newline= ' ') as f:
+				write = csv.writer(f, delimiter = '')
+				if counter == 1:
+					write.writerow(['date', 'temp','humidity'])
+				write.writerow([date,temp,humidity])
 
 	    time.sleep(6)
+		counter+=1
 
 except KeyboardInterrupt:
     print("Cleanup")
