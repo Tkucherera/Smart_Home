@@ -1,6 +1,7 @@
 from gpiozero import MotionSensor
 import RPi.GPIO as GPIO
 import datetime, csv,time, dht11
+import mysql.connector as mariadb
 # initialize GPIO
 GPIO.setwarnings(True)
 GPIO.setmode(GPIO.BCM)
@@ -8,6 +9,13 @@ GPIO.setmode(GPIO.BCM)
 instance = dht11.DHT11(pin=17)
 #motion sensor using pin 4 
 pir = MotionSensor(4)
+#open database
+mydb = mariadb.connect(
+    host = "localhost",
+    user = "Tinashe",
+    password = 'Smarthome',
+    database = 'mydatabase'
+    )
 counter = 1
 while True:
     pir.wait_for_motion()
@@ -16,12 +24,13 @@ while True:
         #when there is motion right the temp of the room to a file
         result = instance.read()
         if result.is_valid():
-            date = str(datetime.datetime.now())
-            temp = str(result.temperature)
+            temp = int(result.temperature)
             humidity = str(result.humidity)
-            with open('temp.csv', 'a', newline = '') as f:
-                write = csv.writer(f, delimiter = ' ')
-                    write.writerow(['date','temp','humidity'])
-                write.writerow([date, temp, humidity])
-            time.sleep(10)
-            if counter == 1:
+            #insert values into database
+    mycursor = mydb.cursor()
+    sql = "INSERT INTO Temp_HUmidity (date, temp, Humidity) VALUES (%s, %s, %s)"
+    val = (datetime.datetime.now(), temp, humidity)
+    mycursor.execute(sql, val)
+    mydb.commit()           
+    time.sleep(10)
+    counter+=1
