@@ -20,17 +20,18 @@ counter = 1
 while True:
     pir.wait_for_motion()
     if pir.motion_detected:
-        print("Someone in room")
+        
         #when there is motion right the temp of the room to a file
         result = instance.read()
         if result.is_valid():
             temp = int(result.temperature)
             humidity = str(result.humidity)
             #insert values into database
-    mycursor = mydb.cursor()
-    sql = "INSERT INTO Temp_HUmidity (date, temp, Humidity) VALUES (%s, %s, %s)"
-    val = (datetime.datetime.now(), temp, humidity)
-    mycursor.execute(sql, val)
-    mydb.commit()           
-    time.sleep(10)
+        mycursor = mydb.cursor()
+        sql = "INSERT INTO Temp_humidity (date_time, temp, humidity) VALUES (%s, %s, %s)"
+        val = (datetime.datetime.now(), temp, humidity)
+        mycursor.execute(sql, val)
+        mydb.commit()           
+        time.sleep(10)
+    
     counter+=1
