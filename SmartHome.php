@@ -1,3 +1,4 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <!DOCTYPE HTML PUBLIC >
 <html>
 <head>
@@ -5,11 +6,10 @@
 .header {
   border: 1px outset blue;
   background-color:lightblue;
-  text-align:center
   }
 .dashboard {
   height:30vh;
-  background-color: #008080;
+  background-color: white;
   display: flex;
   align-items:center;
   }
@@ -19,7 +19,7 @@
   height: 15vh;
   background-color: #5F9EA0;
   display:flex;
-  align-items: center;
+  align-items:center;
   justify-content: space-around;
   }
 .row {
@@ -27,10 +27,19 @@
   justify-content: space-around;
   width: 100%
 }
+.box {
+  background-color:lightgrey;
+  width = 300px;
+  border = 5px lightblue;
+  padding: 50px;
+  margin: 20px;
+}
 </style>
 </head>
 <body> 
-<h1 class = "header">KUCHERERA SMART HOME</h1>
+<div class = "header">
+  <h1 style="font-size:60px;">SMART HOME</h1>
+   <h1 align = "right">Making homes safer... </h1></div>
 
 <?php
 
@@ -55,7 +64,8 @@ $query = mysqli_query($dbconnect, "SELECT * FROM Temp_humidity ORDER BY entry_id
    or die (mysqli_error($dbconnect));
 $row = mysqli_fetch_array($query);
 $n = 1;
-echo "<p>Last Updated: {$row['date_time']}</p>";
+echo "<p>Last Updated: {$row['date_time']}</p>
+    <h1 class = 'box' text-align: right>Kucherera Cumming Residence</h1>";
 while($n == 1){
     echo 
         
