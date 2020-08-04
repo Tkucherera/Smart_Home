@@ -1,4 +1,3 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <!DOCTYPE HTML PUBLIC >
 <html>
 <head>
@@ -77,11 +76,32 @@ while($n == 1){
           <div class = 'row no-padding'>
             <div class = 'col'>
                 <div class = 'circle' >
-                  <h1>Humidity: {$row['humidity']} %</h1></div></div></div>";
+                  <h1>Humidity: {$row['humidity']} %</h1></div></div></div>
+          <div class = 'row no-padding'>
+            <div class = 'col'>
+                <div class = 'circle' >
+                  <h1>Flammable Gas</h1></div></div></div>";
     $n++;
 
 }
 ?>
  </div>
+ <h1 class = 'box' text-align: right>Cumming Polo Fields
+            <h3>____The temp inside is the same as outside you might want to check your thermostat</h3></h1>
+ <div class = 'dashboard'>
+          <div class = 'row no-padding'>
+            <div class = 'col'>
+              <div class = 'circle'>
+                <h1>Temperature</h1></div></div></div>
+          <div class = 'row no-padding'>
+            <div class = 'col'>
+                <div class = 'circle' >
+                  <h1>Humidity</h1></div></div></div>
+          <div class = 'row no-padding'>
+            <div class = 'col'>
+                <div class = 'circle' >
+                  <h1>Visibility</h1></div></div></div>
+</div>
+ 
 </body>
 </html>
