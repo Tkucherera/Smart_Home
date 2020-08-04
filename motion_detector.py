@@ -1,6 +1,6 @@
 from gpiozero import MotionSensor
 import RPi.GPIO as GPIO
-import datetime, csv,time, dht11
+import datetime,time, dht11
 import mysql.connector as mariadb
 # initialize GPIO
 GPIO.setwarnings(True)
